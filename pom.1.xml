@@ -6,42 +6,9 @@
   <artifactId>cidaas-interceptor-spring-security</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
- 
- <description>Interceptor for Cidaas Java Clients</description>
-	<url>https://github.com/Cidaas/cidaas-interceptor-spring-security</url>
+
   <name>cidaas-interceptor-spring-security</name>
-  
-  <licenses>
-		<license>
-			<name>Cidaas License</name>
-			<url>https://www.cidaas.de</url>
-		</license>
-	</licenses>
-
-	<developers>
-		<developer>
-			<name>Vimal prakash</name>
-			<email>developer@cidaas.de</email>
-			<organization>Widas Concepts</organization>
-			<organizationUrl>https://www.widas.de</organizationUrl>
-		</developer>
-	</developers>
-	<distributionManagement>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-		</repository>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-
-  <scm>
-		<connection>scm:git:git://github.com/Cidaas/cidaas-interceptor-spring-security.git</connection>
-		<developerConnection>scm:git:ssh://github.com:Cidaas/cidaas-interceptor-spring-security.git</developerConnection>
-		<url>https://github.com/Cidaas/cidaas-interceptor-spring-security/tree/master</url>
-	</scm>
+  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
