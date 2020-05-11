@@ -4,7 +4,7 @@
 
   <groupId>de.cidaas</groupId>
   <artifactId>cidaas-interceptor-spring-security</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
  
  <description>Interceptor for Cidaas Java Clients</description>
@@ -45,7 +45,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jackson.version>2.9.8</jackson.version>
+    <jackson.version>[2.9.9.2,)</jackson.version>
        <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
