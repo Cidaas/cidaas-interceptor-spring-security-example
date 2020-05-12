@@ -1,13 +1,23 @@
-# Getting Started!
-To get started you can simply clone the **_cidaas-interceptor-spring-security-example_** repository and install the dependencies.
+# About this project  
+This is the example project for the [cidaas interceptor with the annotation-based configuration approach](https://github.com/Cidaas/cidaas-interceptor-spring-security)
+  
 ## Prerequisites
-You need git to clone the **_cidaas-interceptor-spring-security-example_** repository. You can get git from [_here_](https://git-scm.com/)
-
+To get started You can simply clone the **_cidaas-interceptor-spring-security-example_** repository and install the dependencies.
+  
 You must have JAVA and its package manager \(maven\) installed. You can get them from [_JAVA here_](https://java.com/en/download/) and [_MAVEN here_](https://maven.apache.org/install.html).You can download the postman from [_here_](https://www.getpostman.com/apps)
+  
 ## Clone cidaas-interceptor-spring-security-example
 Clone the **cidaas-interceptor-spring-security-example** repository using git:
 ```
 git clone https://github.com/Cidaas/cidaas-interceptor-spring-security-example.git
+
+```
+
+Install the dependencies:  
+In your project root directory, excute: 
+  
+```
+mvn clean install
 
 ```
 
@@ -22,10 +32,8 @@ git clone https://github.com/Cidaas/cidaas-interceptor-spring-security-example.g
 </dependency>
 
 ```
-## Usage
+## The ``WebSecurityConfig`` file defines which endpoints should be secured:
 
-Create a ``WebSecurityConfig.java`` file in your project.
-Add the following code into the ``WebSecurityConfig`` file.
 ```java
 @Configuration
 @PropertySource("classpath:cidaas_config.properties")
@@ -46,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return source;
 	}
 
-    // the following apis are configure with our examples.
+    // the following apis are configured with our examples.
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -66,12 +74,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 }
 ```
+  
+## The spring security config : 
 
-## Initialize the spring security config : 
-
-Create a ``WebApplicationInitializer.java`` file in your project.
-
-To initialize the spring security config , add the following code in ``WebApplicationInitializer.java``.
+The ``WebApplicationInitializer.java`` configures spring to load the ``WebSecurityConfig.java``.  
 
 ```java
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -98,13 +104,21 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
   }
 
 }
-```
+```  
+  
 ## Property configuration: 
 
-Create a `cidaas_config.properties` file inside `resources` directory & Mention this file in WebSecurityConfig.(@PropertySource("classpath:cidaas_config.properties"))
+To test the example, you will need to fill in the information required in the `cidaas_config.properties` file inside the `resources` directory. This is getting loaded in the WebSecurityConfig -> (@PropertySource("classpath:cidaas_config.properties"))
 
 ```
 base_url=https://<cidaas-base-url>
 client_id=<non-interactive-app-client-id>
 client_secret=<non-interactive-app-client-secret>
 ```
+  
+## Execute the example project
+  
+To start the example project, right click the project root directory and select 'Run as' -> 'Run on server' and select your local tomcat installation.  
+You can download tomcat [here](https://tomcat.apache.org/download-90.cgi).
+  
+You can get more information about cidaas [here](https://docs.cidaas.de/)
