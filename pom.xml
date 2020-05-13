@@ -46,6 +46,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jackson.version>[2.9.9.2,)</jackson.version>
+	  <spring-security.version>5.3.2.RELEASE</spring-security.version>
        <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
@@ -54,17 +55,17 @@
       <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-core</artifactId>
-    <version>5.1.5.RELEASE</version>
+    <version>${spring-security.version}</version>
 </dependency>
         <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-web</artifactId>
-    <version>5.1.5.RELEASE</version>
+    <version>${spring-security.version}</version>
 </dependency>
         <dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.1.5.RELEASE</version>
+			<version>${spring-security.version}</version>
 		</dependency>
 			<dependency>
     <groupId>org.slf4j</groupId>
@@ -74,7 +75,7 @@
  <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>4.0.1</version>
         </dependency>
       <dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -84,12 +85,12 @@
 		 <dependency>
     <groupId>commons-codec</groupId>
     <artifactId>commons-codec</artifactId>
-    <version>1.9</version>
+    <version>1.14</version>
 </dependency>
 <dependency>
     <groupId>com.google.guava</groupId>
     <artifactId>guava</artifactId>
-    <version>27.1-jre</version>
+    <version>29.0-jre</version>
 </dependency>
     <dependency>
       <groupId>junit</groupId>
