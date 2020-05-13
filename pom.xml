@@ -13,16 +13,16 @@
   
   <licenses>
 		<license>
-			<name>Cidaas License</name>
-			<url>https://www.cidaas.de</url>
+			<name>MIT Licence</name>
+			<url>https://opensource.org/licenses/mit-license</url>
 		</license>
 	</licenses>
 
 	<developers>
 		<developer>
-			<name>Vimal prakash</name>
+			<name>Dinesh Babu</name>
 			<email>developer@cidaas.de</email>
-			<organization>Widas Concepts</organization>
+			<organization>Widas ID GmbH</organization>
 			<organizationUrl>https://www.widas.de</organizationUrl>
 		</developer>
 	</developers>
