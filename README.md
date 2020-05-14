@@ -120,5 +120,12 @@ client_secret=<non-interactive-app-client-secret>
   
 To start the example project, right click the project root directory and select 'Run as' -> 'Run on server' and select your local tomcat installation.  
 You can download tomcat [here](https://tomcat.apache.org/download-90.cgi).
+
+## Test the endpoint
+
+With standard configuration the tomcat server is available under http://localhost:8080/cidaas-interceptor-spring-security-example/.
+You can for example test the http://localhost:8080/cidaas-interceptor-spring-security-example/myprofile - API. If you provide a valid access token gathered via the client_credentials flow for your configured application, you can access the API. It will block your access with the message access denied if you provide no token or your token is invalid. 
+You will need to provide the access token as 'Bearer Token', e.g. in Postman. You can build the Authorization-header yourself if you add a new Header with the key "Authorization" and with the value "Bearer <your_token>"
+
   
 You can get more information about cidaas [here](https://docs.cidaas.de/)
