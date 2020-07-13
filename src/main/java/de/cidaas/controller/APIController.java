@@ -114,7 +114,7 @@ public class APIController {
 	
 	// DenyAll -> Deactivates the rest service.
 	
-	@RequestMapping(value = "/ex/foos", method = POST)
+	@RequestMapping(method = RequestMethod.GET, path = "/leavetype")
 	@ResponseBody
 	public List<String> leaveType() {
 		List<String> leaveTypeList=new ArrayList<String>();
