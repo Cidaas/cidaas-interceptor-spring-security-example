@@ -10,13 +10,14 @@ import javax.servlet.ServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Component
 public class APIController {
 
-    @RequestMapping("/myprofile")
+    @RequestMapping(method = RequestMethod.GET, path = "/myprofile")
     @ResponseBody
 	public Map<String,String> myprofile() {    	
 		Map<String,String> profileObj=new HashMap<String,String>();
@@ -26,7 +27,7 @@ public class APIController {
 		return profileObj;
 	}
     
-    @RequestMapping("/v1/api/myprofile1")
+    @RequestMapping(method = RequestMethod.GET, path = "/v1/api/myprofile1")
     @ResponseBody
 	public Map<String,String> myprofile1() {    	
 		Map<String,String> profileObj=new HashMap<String,String>();
@@ -35,7 +36,7 @@ public class APIController {
 		profileObj.put("role", "USER");
 		return profileObj;
 	}
-    @RequestMapping("/v1/api/myprofile2")
+    @RequestMapping(method = RequestMethod.GET, path = "/v1/api/myprofile2")
     @ResponseBody
 	public Map<String,String> myprofile2() {    	
 		Map<String,String> profileObj=new HashMap<String,String>();
@@ -47,7 +48,7 @@ public class APIController {
     
     
     
-    @RequestMapping("/employeelist")
+    @RequestMapping(method = RequestMethod.GET, path = "/employeelist")
     @ResponseBody
 	public List<Object> employeeList(ServletRequest request) {		
 		List<Object> empList=new ArrayList<Object>();
@@ -66,7 +67,7 @@ public class APIController {
 	
 	//  checks if a caller has one of the scopes defined in scopes. 
 	
-	@RequestMapping("/holidaylist")	
+	@RequestMapping(method = RequestMethod.GET, path = "/holidaylist")	
 	@ResponseBody
 	public List<Object> holidayList(ServletRequest request) {		
 		List<Object> holidayList=new ArrayList<Object>();
@@ -81,7 +82,7 @@ public class APIController {
 		return holidayList;
 	}	
 	
-	@RequestMapping("/localholidaylist")
+	@RequestMapping(method = RequestMethod.GET, path = "/localholidaylist")
 	@ResponseBody
 	public List<Object> localHolidayList(ServletRequest request) {
 		List<Object> holidayList=new ArrayList<Object>();
@@ -96,7 +97,7 @@ public class APIController {
 		return holidayList;
 	}
 	
-	@RequestMapping("/holidayandemployeelist")
+	@RequestMapping(method = RequestMethod.GET, path = "/holidayandemployeelist")
 	@ResponseBody
 	public List<Object> bothEmpListAndHolidayList(ServletRequest request) {	
 		List<Object> holidayList=new ArrayList<Object>();
@@ -113,7 +114,7 @@ public class APIController {
 	
 	// DenyAll -> Deactivates the rest service.
 	
-	@RequestMapping("/leavetype")
+	@RequestMapping(value = "/ex/foos", method = POST)
 	@ResponseBody
 	public List<String> leaveType() {
 		List<String> leaveTypeList=new ArrayList<String>();
