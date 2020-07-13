@@ -16,7 +16,6 @@ import javax.servlet.ServletRequest;
 
 @Controller
 @Component
-@ComponentScan(basePackages = "de.cidaas.controller")
 public class APIController {
 
     @RequestMapping("/myprofile")
