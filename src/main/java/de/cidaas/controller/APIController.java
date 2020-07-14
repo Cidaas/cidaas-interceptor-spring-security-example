@@ -36,6 +36,7 @@ public class APIController {
 		profileObj.put("role", "USER");
 		return profileObj;
 	}
+    
     @RequestMapping(method = RequestMethod.GET, path = "/v1/api/myprofile2")
     @ResponseBody
 	public Map<String,String> myprofile2() {    	
@@ -45,8 +46,6 @@ public class APIController {
 		profileObj.put("role", "USER");
 		return profileObj;
 	}
-    
-    
     
     @RequestMapping(method = RequestMethod.GET, path = "/employeelist")
     @ResponseBody
@@ -64,8 +63,6 @@ public class APIController {
 		empList.add(profileObj2);
 		return empList;
 	}
-	
-	//  checks if a caller has one of the scopes defined in scopes. 
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/holidaylist")	
 	@ResponseBody
@@ -111,9 +108,7 @@ public class APIController {
 		holidayList.add(holidayObj2);
 		return holidayList;
 	}
-	
-	// DenyAll -> Deactivates the rest service.
-	
+
 	@RequestMapping(method = RequestMethod.GET, path = "/leavetype")
 	@ResponseBody
 	public List<String> leaveType() {
