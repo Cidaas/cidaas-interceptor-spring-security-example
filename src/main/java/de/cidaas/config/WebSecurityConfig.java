@@ -39,7 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		JwtWebSecurityConfigurer.forRS256(env.getProperty("client_id"), env.getProperty("base_url"))
-				.configure(http).authorizeRequests()				
+				.configure(http)
+				.authorizeRequests()				
 				.antMatchers(HttpMethod.GET, "/myprofile").authenticated()
 				.antMatchers(HttpMethod.GET, "/v1/**").authenticated()
 				.antMatchers(HttpMethod.GET, "/employeelist").hasRole("HR")
