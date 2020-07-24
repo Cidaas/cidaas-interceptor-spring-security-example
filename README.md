@@ -65,8 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/v1/api/**").authenticated() // it will authenticate all the url followed by {{baseurl}}/v1/api/
 				.antMatchers(HttpMethod.GET, "/employeelist").hasRole("HR")
 				.antMatchers(HttpMethod.GET, "/holidaylist").hasAuthority("holidaylist:read")
-				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAuthority("holidaylist:read")
-				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasRole("HR")
+				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAnyAuthority("holidaylist:read", "ROLE_HR")
 				.antMatchers(HttpMethod.GET, "/localholidaylist").permitAll()
 				.antMatchers(HttpMethod.GET, "/leavetype").denyAll();
 		
@@ -74,7 +73,49 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 }
 ```
-  
+
+Warning: Don't use 
+
+```
+                .antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAuthority("holidaylist:read")
+				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasRole("HR")
+```
+to give endpoint role & authority as [roles and authorities are similar in Spring](https://www.baeldung.com/spring-security-expressions). 
+
+hasRole("HR") is actually the same as hasAuthority("ROLE_HR"). 
+
+the above check has the same logic as 
+
+```
+                .antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAuthority("holidaylist:read")
+				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAuthority("ROLE_HR")
+```
+and it only makes endpoint /holidayandemployeelist to be accessible only with authority "holidaylist:read" in the first line, and override it to be accesible only with role HR in the second line.
+
+instead use
+
+```
+                .antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAnyAuthority("holidaylist:read", "ROLE_HR")
+```
+
+or 
+
+```
+               @PreAuthorize("hasAnyAuthority('a:read', 'ROLE_HR')")
+```
+
+
+to make the endpoint to be accessible with authority "holidaylist:read" OR role "HR"
+
+
+and use
+
+```
+                @PreAuthorize("hasRole('HR') && hasAuthority('holidaylist:read')")
+```
+
+to make the endpoint to be accessible with authority "holidaylist:read" AND role "HR"
+
 ## The spring security config : 
 
 The ``WebApplicationInitializer.java`` configures spring to load the ``WebSecurityConfig.java``.  
