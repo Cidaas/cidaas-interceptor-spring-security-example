@@ -1,10 +1,8 @@
 package de.cidaas.config;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -16,11 +14,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import de.cidaas.interceptor.config.JwtWebSecurityConfigurer;
 
 @Configuration
 @PropertySource("classpath:cidaas_config.properties")
+@EnableWebMvc
+@ComponentScan(basePackages = { "de.cidaas.controller" })
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -42,7 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		JwtWebSecurityConfigurer.forRS256(env.getProperty("client_id"), env.getProperty("base_url"))
-				.configure(http).authorizeRequests()				
+				.configure(http)
+				.authorizeRequests()				
 				.antMatchers(HttpMethod.GET, "/myprofile").authenticated()
 				.antMatchers(HttpMethod.GET, "/v1/**").authenticated()
 				.antMatchers(HttpMethod.GET, "/employeelist").hasRole("HR")
