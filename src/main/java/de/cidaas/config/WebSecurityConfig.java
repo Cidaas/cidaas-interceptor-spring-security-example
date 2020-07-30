@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -43,17 +42,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		JwtWebSecurityConfigurer.forRS256(env.getProperty("client_id"), env.getProperty("base_url"))
-				.configure(http)
-				.authorizeRequests()				
-				.antMatchers(HttpMethod.GET, "/myprofile").authenticated()
-				.antMatchers(HttpMethod.GET, "/v1/**").authenticated()
-				.antMatchers(HttpMethod.GET, "/employeelist").hasRole("HR")
-				.antMatchers(HttpMethod.GET, "/holidaylist").hasAuthority("holidaylist:read")
-				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAuthority("holidaylist:read")
-				.antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasRole("HR")
-				.antMatchers(HttpMethod.GET, "/localholidaylist").permitAll()
-				.antMatchers(HttpMethod.GET, "/leavetype").denyAll();
-		
-		
+		.configure(http).antMatcher("/**")  
+        .authorizeRequests()  
+        .antMatchers("/").permitAll()  
+        .anyRequest().authenticated();  	
 	}
 }

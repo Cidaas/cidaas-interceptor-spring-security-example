@@ -7,16 +7,22 @@ import java.util.Map;
 
 import javax.servlet.ServletRequest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @Component
 public class APIController {
+	@RequestMapping("/")
+	public String index() {
+		return "Hello World!";
+	}
 
+	@PreAuthorize("isAuthenticated()")
     @RequestMapping(method = RequestMethod.GET, path = "/myprofile")
     @ResponseBody
 	public Map<String,String> myprofile() {    	
@@ -27,6 +33,7 @@ public class APIController {
 		return profileObj;
 	}
     
+	@PreAuthorize("(hasRole('HR') && hasRole('Manager')) || hasAuthority('a:read')")
     @RequestMapping(method = RequestMethod.GET, path = "/v1/api/myprofile1")
     @ResponseBody
 	public Map<String,String> myprofile1() {    	
@@ -37,6 +44,7 @@ public class APIController {
 		return profileObj;
 	}
     
+	@PreAuthorize("hasAuthority('a:read') && hasAuthority('manage') ")
     @RequestMapping(method = RequestMethod.GET, path = "/v1/api/myprofile2")
     @ResponseBody
 	public Map<String,String> myprofile2() {    	
@@ -47,6 +55,7 @@ public class APIController {
 		return profileObj;
 	}
     
+	@PreAuthorize("hasRole('HR')")
     @RequestMapping(method = RequestMethod.GET, path = "/employeelist")
     @ResponseBody
 	public List<Object> employeeList(ServletRequest request) {		
@@ -64,6 +73,7 @@ public class APIController {
 		return empList;
 	}
 	
+	@PreAuthorize("hasAuthority('a:read')")
 	@RequestMapping(method = RequestMethod.GET, path = "/holidaylist")	
 	@ResponseBody
 	public List<Object> holidayList(ServletRequest request) {		
@@ -79,7 +89,8 @@ public class APIController {
 		return holidayList;
 	}	
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/localholidaylist")
+	@PreAuthorize("hasRole('HR') && hasRole('Manager')")
+	@RequestMapping(method = RequestMethod.GET, path = "/managerholidaylist")
 	@ResponseBody
 	public List<Object> localHolidayList(ServletRequest request) {
 		List<Object> holidayList=new ArrayList<Object>();
@@ -94,6 +105,7 @@ public class APIController {
 		return holidayList;
 	}
 	
+	@PreAuthorize("hasAnyAuthority('a:read', 'ROLE_HR')")
 	@RequestMapping(method = RequestMethod.GET, path = "/holidayandemployeelist")
 	@ResponseBody
 	public List<Object> bothEmpListAndHolidayList(ServletRequest request) {	
@@ -109,6 +121,7 @@ public class APIController {
 		return holidayList;
 	}
 
+	@PreAuthorize("denyAll()")
 	@RequestMapping(method = RequestMethod.GET, path = "/leavetype")
 	@ResponseBody
 	public List<String> leaveType() {
