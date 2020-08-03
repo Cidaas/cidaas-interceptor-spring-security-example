@@ -26,6 +26,18 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>5.7.0-M1</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-test</artifactId>
+		    <version>5.3.3.RELEASE</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>de.cidaas</groupId>
 			<artifactId>cidaas-interceptor-spring-security</artifactId>
 			<version>1.0.0</version>
