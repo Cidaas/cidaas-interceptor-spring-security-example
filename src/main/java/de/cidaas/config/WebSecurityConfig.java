@@ -43,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.cors();
 		JwtSpringInterceptor
 		.offlineValidation(env.getProperty("client_id"), env.getProperty("base_url"))
-//		.introspectionValidation(env.getProperty("client_id"), env.getProperty("base_url"), env.getProperty("client_secret"))
+//		.introspectionValidation(env.getProperty("client_id"), env.getProperty("base_url"))
 		.configure(http).antMatcher("/**")  
         .authorizeRequests()  
         .antMatchers("/").permitAll()  
