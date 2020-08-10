@@ -6,7 +6,7 @@
 	<groupId>de.cidaas</groupId>
 	<artifactId>cidaas-interceptor-spring-security-example</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>cidaas-interceptor-spring-security-example Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>de.cidaas</groupId>
 			<artifactId>cidaas-interceptor-spring-security</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>

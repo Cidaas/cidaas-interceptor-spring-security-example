@@ -15,7 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import de.cidaas.interceptor.config.JwtWebSecurityConfigurer;
+import de.cidaas.interceptor.JwtSpringInterceptor;
 
 @Configuration
 @PropertySource("classpath:cidaas_config.properties")
@@ -41,7 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		JwtWebSecurityConfigurer.forRS256(env.getProperty("client_id"), env.getProperty("base_url"))
+		JwtSpringInterceptor
+		.offlineValidation(env.getProperty("client_id"), env.getProperty("base_url"))
+//		.introspectionValidation(env.getProperty("client_id"), env.getProperty("base_url"), env.getProperty("client_secret"))
 		.configure(http).antMatcher("/**")  
         .authorizeRequests()  
         .antMatchers("/").permitAll()  
