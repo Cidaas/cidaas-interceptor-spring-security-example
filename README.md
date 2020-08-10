@@ -32,7 +32,7 @@ mvn clean install
 </dependency>
 
 ```
-## The ``WebSecurityConfig`` file defines which endpoints should be secured:
+## The ``WebSecurityConfig`` file defines which endpoints should be secured and how (offline or with introspection-API):
 
 ```java
 @Configuration
@@ -59,7 +59,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
-		JwtWebSecurityConfigurer.forRS256(env.getProperty("client_id"), env.getProperty("base_url"))
+		JwtWebSecurityConfigurer
+				.offlineValidation(env.getProperty("client_id"), env.getProperty("base_url"))
+		//		.introspectionValidation(env.getProperty("client_id"), env.getProperty("base_url"))
 				.configure(http).authorizeRequests()				
 				.antMatchers(HttpMethod.GET, "/myprofile").authenticated()
                 .antMatchers(HttpMethod.GET, "/v1/api/**").authenticated() // it will authenticate all the url followed by {{baseurl}}/v1/api/
@@ -71,6 +73,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 	}
+
+	// Or like this, if we use @PreAuthorize() for method-level security
+
+	// @Override
+	// protected void configure(HttpSecurity http) throws Exception {
+	// 	http.cors();
+	// 	JwtSpringInterceptor
+	//			.offlineValidation(env.getProperty("client_id"), env.getProperty("base_url"))
+	//			.introspectionValidation(env.getProperty("client_id"), env.getProperty("base_url"))
+	//			.configure(http).antMatcher("/**")  
+    //    		.authorizeRequests()  
+    //   		.antMatchers("/").permitAll()  
+    //    		.anyRequest().authenticated();  	
+	//}
 }
 ```
 
@@ -98,23 +114,20 @@ instead use
                 .antMatchers(HttpMethod.GET, "/holidayandemployeelist").hasAnyAuthority("holidaylist:read", "ROLE_HR")
 ```
 
-or 
+or (for method-level security)
 
 ```
                @PreAuthorize("hasAnyAuthority('a:read', 'ROLE_HR')")
 ```
 
+to make the endpoint to be accessible with authority "holidaylist:read" `OR` role "HR"
 
-to make the endpoint to be accessible with authority "holidaylist:read" OR role "HR"
 
-
-and use
+If you want to make the endpoint to be accessible with authority "holidaylist:read" `AND` role "HR" use this
 
 ```
                 @PreAuthorize("hasRole('HR') && hasAuthority('holidaylist:read')")
 ```
-
-to make the endpoint to be accessible with authority "holidaylist:read" AND role "HR"
 
 ## The spring security config : 
 
@@ -123,27 +136,22 @@ The ``WebApplicationInitializer.java`` configures spring to load the ``WebSecuri
 ```java
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-  // Load spring security configuration
   @Override
   protected Class<?>[] getRootConfigClasses() {
-    return new Class[] { WebSecurityConfig.class };
+    return new Class[] {WebSecurityConfig.class};
   }
 
-  // Load spring web configuration
   @Override
   protected Class<?>[] getServletConfigClasses() {
-    return new Class[] { 
-    		WebConfig.class 
-    		};
+    return null;
   }
 
   @Override
   protected String[] getServletMappings() {
-    return new String[] { "/" };
+    return new String[] {"/"};
   }
-
 }
 ```  
   
