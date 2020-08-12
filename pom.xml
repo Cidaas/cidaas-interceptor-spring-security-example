@@ -1,52 +1,76 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>de.cidaas</groupId>
-  <artifactId>cidaas-interceptor-spring-security-example</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>cidaas-interceptor-spring-security-example Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-   <properties>   
-    <springframework.version>5.2.6.RELEASE</springframework.version>   
-      <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-  </properties>
-  <dependencies>
-  <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>        
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${springframework.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>${springframework.version}</version>
-        </dependency> 
-         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-		
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-     <dependency>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.cidaas</groupId>
+	<artifactId>cidaas-interceptor-spring-security-example</artifactId>
+	<packaging>war</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<description>Cidaas interceptor spring security example</description>
+	<url>https://github.com/Cidaas/cidaas-interceptor-spring-security-example</url>
+	<name>cidaas-interceptor-spring-security-example</name>
+
+	<licenses>
+		<license>
+			<name>MIT Licence</name>
+			<url>https://opensource.org/licenses/mit-license</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Cidaas</name>
+			<email>developer@cidaas.de</email>
+			<organization>Widas ID</organization>
+			<organizationUrl>https://www.widas.de</organizationUrl>
+		</developer>
+	</developers>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<scm>
+		<connection>scm:git:https://gitlab.widas.de/cidaas-public-devkits/cidaas-interceptors/cidaas-interceptor-spring-security-example.git</connection>
+		<url>scm:git:https://gitlab.widas.de/cidaas-public-devkits/cidaas-interceptors/cidaas-interceptor-spring-security-example.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.2.6.RELEASE</version>
+		</dependency>
+		<dependency>
 			<groupId>de.cidaas</groupId>
 			<artifactId>cidaas-interceptor-spring-security</artifactId>
-			<version>1.0.0</version>
+			<version>2.0.0</version>
 		</dependency>
-  </dependencies>
-  <build>
-    <finalName>cidaas-interceptor-spring-security-example</finalName>
-  </build>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.7.0-M1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>5.3.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>cidaas-interceptor-spring-security-example</finalName>
+	</build>
 </project>
