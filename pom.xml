@@ -4,7 +4,7 @@
 	<groupId>de.cidaas</groupId>
 	<artifactId>cidaas-interceptor-spring-security-example</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<description>Cidaas interceptor spring security example</description>
 	<url>https://github.com/Cidaas/cidaas-interceptor-spring-security-example</url>
@@ -34,7 +34,7 @@
 	<scm>
 		<connection>scm:git:https://gitlab.widas.de/cidaas-public-devkits/cidaas-interceptors/cidaas-interceptor-spring-security-example.git</connection>
 		<url>scm:git:https://gitlab.widas.de/cidaas-public-devkits/cidaas-interceptors/cidaas-interceptor-spring-security-example.git</url>
-		<tag>cidaas-interceptor-spring-security-example-1.0.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<dependencies>
